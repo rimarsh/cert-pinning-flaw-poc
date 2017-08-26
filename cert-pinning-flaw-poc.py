@@ -49,6 +49,7 @@ def gen_malicious_chain(domain):
 
     if args.mode == 'attack':
         for cert in upstream_certs:
+            logging.info("Real Cert: %s", crypto.dump_certificate(crypto.FILETYPE_PEM, cert))
             tempMaliciousChainFile.write(crypto.dump_certificate(crypto.FILETYPE_PEM, cert))
         logging.info("The upstream certificates WILL be added to the malicious client chain")
     else:
@@ -125,6 +126,7 @@ tempMaliciousChainFile = tempfile.NamedTemporaryFile()
 
 gen_malicious_chain(args.domain)
 
+logging.info("%s", tempMaliciousChainFile.name)
 logging.info(
     "Starting web server - listening at port %s. Redirecting traffic for %s to this server will bypass any pinning and "
     "show the requests here" % (
