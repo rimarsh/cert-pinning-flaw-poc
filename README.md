@@ -16,3 +16,13 @@ You can change these, use the following command to generate a new pair.
 You will want to insert CA_CERT.pem to the platform being tested.
 
 John Kozyrakis
+
+### Usage
+
+1. Install python3 `brew install python3` and `pip3 install pyopenssl`
+1. Run the script to configure itself:  
+    `sudo python3 cert-pinning-flaw-poc.py -d <host to attack> -m attack -v`
+1. Edit `/etc/hosts` to include:  
+    `127.0.0.1 <host to attack>`
+1. Run tests and see output here if the attack is successful.
+
